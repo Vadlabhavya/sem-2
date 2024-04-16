@@ -1,0 +1,23 @@
+import numpy as np
+
+def calculate_constants_and_final_temp(T_t, T_a, T_0, t, t_final):
+    # Calculate k
+    k = -np.log((T_t - T_a) / (T_0 - T_a)) / t
+
+    # Calculate c
+    c = (T_t - T_a) / np.exp(-k * t)
+
+    # Calculate T_final
+    T_final = T_a + c * np.exp(-k * t_final)
+    return k, c, T_final
+
+T_t = 50
+T_a = 20
+T_0 = 100
+t = 10
+t_final = 20
+
+k, c, T_final = calculate_constants_and_final_temp(T_t, T_a, T_0, t, t_final)
+print("Cooling constant (k):", k)
+print("Integrating constant (c):", c)
+print("Final temperature (T_final):", T_final)
